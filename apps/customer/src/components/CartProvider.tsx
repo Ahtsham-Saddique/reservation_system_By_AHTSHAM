@@ -1,9 +1,10 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { useAuth } from "./AuthProvider";
 
 export interface CartItem {
-  id: string; // unique ID in cart
+  id: string;
   itemModel: 'hotel' | 'bus' | 'tour' | 'flight';
   itemId: string;
   name: string;
@@ -34,30 +35,48 @@ const CartContext = createContext<CartContextType>({
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const { user, loading: authLoading } = useAuth();
 
-  // Load from local storage on mount
+  const getCartKey = () => {
+    if (!user?.id) return null;
+    return `ecotravel_cart_${user.id}`;
+  };
+
   useEffect(() => {
-    const savedCart = localStorage.getItem("ecotravel_cart");
-    if (savedCart) {
-      try {
-        setCart(JSON.parse(savedCart));
-      } catch (e) {
-        console.error("Failed to parse cart");
+    if (authLoading) return;
+    const cartKey = getCartKey();
+    if (cartKey) {
+      const savedCart = localStorage.getItem(cartKey);
+      if (savedCart) {
+        try {
+          setCart(JSON.parse(savedCart));
+        } catch (e) {
+          console.error("Failed to parse cart");
+        }
+      } else {
+        setCart([]);
       }
+    } else {
+      setCart([]);
     }
     setIsLoaded(true);
-  }, []);
+  }, [user?.id, authLoading]);
 
-  // Save to local storage when cart changes
   useEffect(() => {
     if (isLoaded) {
-      localStorage.setItem("ecotravel_cart", JSON.stringify(cart));
+      const cartKey = getCartKey();
+      if (cartKey) {
+        localStorage.setItem(cartKey, JSON.stringify(cart));
+      }
     }
-  }, [cart, isLoaded]);
+  }, [cart, isLoaded, user?.id]);
 
   const addToCart = (item: CartItem) => {
+    if (!user?.id) {
+      console.warn("Please log in to add items to cart");
+      return;
+    }
     setCart((prev) => {
-      // If exactly the same item (same itemId and details) exists, increment quantity
       const existing = prev.find(i => i.itemId === item.itemId);
       if (existing) {
         return prev.map(i => i.itemId === item.itemId ? { ...i, quantity: i.quantity + item.quantity } : i);
@@ -72,6 +91,10 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const clearCart = () => {
     setCart([]);
+    const cartKey = getCartKey();
+    if (cartKey) {
+      localStorage.removeItem(cartKey);
+    }
   };
 
   const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);

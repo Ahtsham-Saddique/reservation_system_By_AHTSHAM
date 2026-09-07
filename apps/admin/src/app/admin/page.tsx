@@ -470,42 +470,20 @@ export default function AdminDashboard() {
         </div>
       )}
 
-      {/* Hero Welcome Header */}
+      {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-950 via-gray-900 to-emerald-900 p-8 sm:p-10 text-white shadow-xl shadow-gray-950/10">
-          <div className="absolute top-0 right-0 -mt-8 -mr-8 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-800/70 border border-emerald-500/30 text-emerald-200 text-xs font-bold uppercase tracking-wider mb-3">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                System Master Control • Live Order Sync
-              </div>
-              <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-2">
-                Platform Administration
-              </h1>
-              <p className="text-gray-300 font-medium text-sm sm:text-base max-w-xl">
-                Global governance for users, reservations, promo discount engines, CSV reporting, and multi-category metrics.
-              </p>
-            </div>
-            
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => fetchAdminData(true)}
-                disabled={isRefreshing}
-                className="px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-black rounded-2xl shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] active:scale-95 flex items-center gap-2 text-sm disabled:opacity-50"
-              >
-                <span className={isRefreshing ? "animate-spin" : ""}>🔄</span>
-                <span>{isRefreshing ? "Refreshing..." : "Refresh Data"}</span>
-              </button>
-              <button
-                onClick={logout}
-                className="px-4 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl border border-white/10 transition-all hover:scale-[1.02] active:scale-95 flex items-center gap-2 text-sm"
-                title="Sign out"
-              >
-                <span>🚪</span>
-                <span>Logout</span>
-              </button>
-            </div>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div>
+            <h1 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">Platform Administration</h1>
+            <p className="text-gray-500 font-medium mt-1">Global governance for users, reservations, promo discount engines, CSV reporting, and multi-category metrics.</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <button onClick={() => fetchAdminData(true)} disabled={isRefreshing} className="px-5 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-2xl shadow-lg shadow-emerald-600/20 transition-all hover:scale-[1.02] text-sm flex items-center gap-2 disabled:opacity-50">
+              <span className={isRefreshing ? "animate-spin" : ""}>🔄</span> {isRefreshing ? "Refreshing..." : "Refresh"}
+            </button>
+            <button onClick={logout} className="px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-2xl transition-all hover:scale-[1.02] text-sm flex items-center gap-2" title="Sign out">
+              <span>🚪</span> Logout
+            </button>
           </div>
         </div>
       </div>
@@ -518,20 +496,10 @@ export default function AdminDashboard() {
             <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100 sticky top-8 space-y-2">
               <p className="text-xs font-black text-gray-400 uppercase tracking-wider px-3 mb-2">Control Tabs</p>
               {tabs.map(tab => (
-                <button 
-                  key={tab.id} 
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all ${
-                    activeTab === tab.id 
-                      ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/20" 
-                      : "text-gray-600 hover:bg-gray-50"
-                  }`}
-                >
+                <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all ${activeTab === tab.id ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/20" : "text-gray-600 hover:bg-gray-50"}`}>
                   <span className="flex items-center gap-3">{tab.label}</span>
                   {tab.count !== null && (
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-black ${
-                      activeTab === tab.id ? "bg-emerald-700 text-white" : "bg-gray-100 text-gray-600"
-                    }`}>
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-black ${activeTab === tab.id ? "bg-emerald-700 text-white" : "bg-gray-100 text-gray-600"}`}>
                       {tab.count}
                     </span>
                   )}
@@ -539,28 +507,16 @@ export default function AdminDashboard() {
               ))}
 
               <div className="pt-4 border-t border-gray-100 mt-4 space-y-2">
-                <button
-                  onClick={exportBookingsCSV}
-                  className="w-full py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition-colors"
-                >
+                <button onClick={exportBookingsCSV} className="w-full py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition-colors">
                   <span>📥</span> Export Bookings CSV
                 </button>
-                <button
-                  onClick={exportUsersCSV}
-                  className="w-full py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition-colors"
-                >
+                <button onClick={exportUsersCSV} className="w-full py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition-colors">
                   <span>📥</span> Export Users CSV
                 </button>
-                <button
-                  onClick={exportCouponsCSV}
-                  className="w-full py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition-colors"
-                >
+                <button onClick={exportCouponsCSV} className="w-full py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition-colors">
                   <span>📥</span> Export Coupons CSV
                 </button>
-                <button
-                  onClick={logout}
-                  className="w-full py-2.5 px-3 rounded-xl border border-red-100 text-xs font-bold text-red-600 hover:bg-red-50 flex items-center gap-2 transition-colors mt-2"
-                >
+                <button onClick={logout} className="w-full py-2.5 px-3 rounded-xl border border-red-100 text-xs font-bold text-red-600 hover:bg-red-50 flex items-center gap-2 transition-colors mt-2">
                   <span>🚪</span> Logout Admin
                 </button>
               </div>
@@ -581,20 +537,20 @@ export default function AdminDashboard() {
                 {/* 4 Metric Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                   {[
-                    { icon: "💰", label: "Total Revenue", value: `$${stats?.totalRevenue?.toFixed(2) || "0.00"}`, note: "Platform wide gross", bg: "bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300" },
-                    { icon: "📅", label: "Total Bookings", value: stats?.totalBookings || 0, note: "All categories", bg: "bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300" },
-                    { icon: "👥", label: "Registered Users", value: stats?.totalUsers || 0, note: "Customers & Suppliers", bg: "bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300" },
-                    { icon: "🎟️", label: "Active Coupons", value: stats?.totalCoupons || 0, note: "Promo campaigns", bg: "bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300" },
+                    { icon: "💰", label: "Total Revenue", value: `$${stats?.totalRevenue?.toFixed(2) || "0.00"}`, note: "Platform wide gross", bg: "bg-emerald-100 text-emerald-700" },
+                    { icon: "📅", label: "Total Bookings", value: stats?.totalBookings || 0, note: "All categories", bg: "bg-blue-100 text-blue-700" },
+                    { icon: "👥", label: "Registered Users", value: stats?.totalUsers || 0, note: "Customers & Suppliers", bg: "bg-purple-100 text-purple-700" },
+                    { icon: "🎟️", label: "Active Coupons", value: stats?.totalCoupons || 0, note: "Promo campaigns", bg: "bg-amber-100 text-amber-700" },
                   ].map((s, i) => (
-                    <div key={i} className="h-full bg-white dark:bg-[#13201b] rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-[#1f332b] card-interactive flex flex-col justify-between group">
+                    <div key={i} className="h-full bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex flex-col justify-between">
                       <div>
-                        <div className={`w-12 h-12 ${s.bg} rounded-2xl flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300 shadow-inner`}>
+                        <div className={`w-12 h-12 ${s.bg} rounded-2xl flex items-center justify-center text-xl font-bold mb-4`}>
                           {s.icon}
                         </div>
-                        <p className="text-gray-400 dark:text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">{s.label}</p>
-                        <h3 className="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white mb-1">{s.value}</h3>
+                        <p className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-1">{s.label}</p>
+                        <h3 className="text-2xl sm:text-3xl font-black text-gray-900 mb-1">{s.value}</h3>
                       </div>
-                      <p className="text-[11px] text-gray-400 dark:text-gray-500 font-medium">{s.note}</p>
+                      <p className="text-[11px] text-gray-400 font-medium">{s.note}</p>
                     </div>
                   ))}
                 </div>

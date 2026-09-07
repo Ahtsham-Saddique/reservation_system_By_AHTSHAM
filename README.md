@@ -214,7 +214,6 @@ PORT=5000
 NODE_ENV=development
 MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/reservation_system
 JWT_SECRET=your_development_jwt_secret_key
-CLOUDINARY_URL=cloudinary://<key>:<secret>@<cloud_name>
 ```
 
 Create `.env.local` in `apps/customer/`, `apps/supplier/`, and `apps/admin/`:
@@ -263,7 +262,6 @@ The monorepo deploys to Vercel as four independent projects linked to the same r
   - `NODE_ENV`: `production`
   - `MONGO_URI`: MongoDB Atlas connection string
   - `JWT_SECRET`: Production secret key
-  - `CLOUDINARY_URL`: Cloudinary API string
   - `FRONTEND_URL_CUSTOMER`: `https://ecotravel-reservation-system.vercel.app`
   - `FRONTEND_URL_SUPPLIER`: `https://supplier-ecotravel.vercel.app`
   - `FRONTEND_URL_ADMIN`: `https://admin-ecotravel.vercel.app`

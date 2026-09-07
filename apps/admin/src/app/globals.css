@@ -2,159 +2,826 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ── SMOOTH SCROLLING & BASE STYLING ────────────────────────────────────────── */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
+/* ============================================================
+   ECO TRAVEL — GLOBAL DESIGN SYSTEM
+   ============================================================ */
 
 :root {
-  --background: #F7FBF9;
-  --foreground: #1f2937;
+  /* Brand */
+  --brand-primary: #0f766e;
+  --brand-primary-dark: #115e59;
+  --brand-primary-light: #ccfbf1;
+
+  --brand-secondary: #0f172a;
+  --brand-accent: #f59e0b;
+  --brand-accent-soft: #fef3c7;
+
+  /* Backgrounds */
+  --background: #f8fafc;
+  --background-soft: #f1f5f9;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --surface-elevated: #ffffff;
+
+  /* Text */
+  --foreground: #0f172a;
+  --foreground-secondary: #334155;
+  --foreground-muted: #64748b;
+  --foreground-subtle: #94a3b8;
+
+  /* Borders */
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  --border-strong: #cbd5e1;
+
+  /* Status */
+  --success: #059669;
+  --success-soft: #d1fae5;
+
+  --warning: #d97706;
+  --warning-soft: #fef3c7;
+
+  --danger: #dc2626;
+  --danger-soft: #fee2e2;
+
+  --info: #2563eb;
+  --info-soft: #dbeafe;
+
+  /* Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+
+  /* Shadows */
+  --shadow-xs:
+    0 1px 2px rgba(15, 23, 42, 0.04);
+
+  --shadow-sm:
+    0 2px 8px rgba(15, 23, 42, 0.06);
+
+  --shadow-md:
+    0 8px 24px rgba(15, 23, 42, 0.08);
+
+  --shadow-lg:
+    0 16px 40px rgba(15, 23, 42, 0.1);
+
+  --shadow-xl:
+    0 24px 60px rgba(15, 23, 42, 0.12);
+
+  /* Layout */
+  --container-width: 1280px;
+
+  /* Motion */
+  --ease-out:
+    cubic-bezier(0.16, 1, 0.3, 1);
+
+  --ease-in-out:
+    cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 html.dark {
-  --background: #0b1310;
-  --foreground: #f3f4f6;
-  color-scheme: dark;
+  --background: #071311;
+  --background-soft: #0b1c18;
+
+  --surface: #0f211d;
+  --surface-muted: #122720;
+  --surface-elevated: #173029;
+
+  --foreground: #f8fafc;
+  --foreground-secondary: #dbe4e1;
+  --foreground-muted: #94a3a0;
+  --foreground-subtle: #64756f;
+
+  --border: #203a32;
+  --border-light: #172e27;
+  --border-strong: #315247;
+
+  --brand-primary: #2dd4bf;
+  --brand-primary-dark: #14b8a6;
+  --brand-primary-light: #134e4a;
+
+  --brand-secondary: #f8fafc;
+
+  --brand-accent: #fbbf24;
+  --brand-accent-soft: #422006;
+
+  --success: #34d399;
+  --success-soft: #064e3b;
+
+  --warning: #fbbf24;
+  --warning-soft: #451a03;
+
+  --danger: #f87171;
+  --danger-soft: #450a0a;
+
+  --info: #60a5fa;
+  --info-soft: #172554;
+
+  --shadow-xs:
+    0 1px 2px rgba(0, 0, 0, 0.25);
+
+  --shadow-sm:
+    0 2px 10px rgba(0, 0, 0, 0.25);
+
+  --shadow-md:
+    0 8px 28px rgba(0, 0, 0, 0.3);
+
+  --shadow-lg:
+    0 16px 45px rgba(0, 0, 0, 0.35);
+
+  --shadow-xl:
+    0 24px 70px rgba(0, 0, 0, 0.45);
 }
+
+/* ============================================================
+   TAILWIND THEME TOKENS
+   ============================================================ */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --color-brand: var(--brand-primary);
+  --color-brand-dark: var(--brand-primary-dark);
+  --color-brand-light: var(--brand-primary-light);
+
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+
+  --color-border: var(--border);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
 }
+
+/* ============================================================
+   HTML
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: optimizeLegibility;
+
+  background: var(--background);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+/* ============================================================
+   BODY
+   ============================================================ */
 
 body {
+  margin: 0;
+
   background-color: var(--background);
   color: var(--foreground);
-  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  font-size: 16px;
+  line-height: 1.6;
+
   overflow-x: hidden;
+
+  transition:
+    background-color 250ms var(--ease-out),
+    color 250ms var(--ease-out);
 }
 
-/* ── HARDWARE-ACCELERATED SMOOTH KEYFRAME ANIMATIONS (NO TILT) ──────────────── */
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+
+  color: var(--foreground);
+
+  font-weight: 700;
+  letter-spacing: -0.025em;
+
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+}
+
+h2 {
+  font-size: clamp(1.875rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-top: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================================
+   TEXT UTILITIES
+   ============================================================ */
+
+.text-muted {
+  color: var(--foreground-muted);
+}
+
+.text-subtle {
+  color: var(--foreground-subtle);
+}
+
+.text-secondary {
+  color: var(--foreground-secondary);
+}
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+
+::selection {
+  background: var(--brand-primary-light);
+  color: var(--brand-primary-dark);
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground-subtle);
+}
+
+/* ============================================================
+   FOCUS ACCESSIBILITY
+   ============================================================ */
+
+:focus-visible {
+  outline: 3px solid color-mix(
+    in srgb,
+    var(--brand-primary) 45%,
+    transparent
+  );
+
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   FORM ELEMENTS
+   ============================================================ */
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  color: var(--foreground);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--foreground-subtle);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled,
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   PREMIUM SURFACE
+   ============================================================ */
+
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.surface-elevated {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================================
+   MODERN CARD SYSTEM
+   ============================================================ */
+
+.card-3d-depth,
+.card-interactive,
+.card-modern {
+  position: relative;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-xl);
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    transform 300ms var(--ease-out),
+    box-shadow 300ms var(--ease-out),
+    border-color 250ms ease;
+}
+
+.card-3d-depth:hover,
+.card-interactive:hover,
+.card-modern:hover {
+  transform: translateY(-4px);
+
+  border-color: color-mix(
+    in srgb,
+    var(--brand-primary) 25%,
+    var(--border)
+  );
+
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================================
+   GLASS SURFACE
+   ============================================================ */
+
+.glass {
+  background: color-mix(
+    in srgb,
+    var(--surface) 78%,
+    transparent
+  );
+
+  border: 1px solid color-mix(
+    in srgb,
+    var(--border) 70%,
+    transparent
+  );
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* ============================================================
+   PREMIUM GRADIENT
+   ============================================================ */
+
+.brand-gradient {
+  background:
+    linear-gradient(
+      135deg,
+      var(--brand-primary-dark) 0%,
+      var(--brand-primary) 55%,
+      #14b8a6 100%
+    );
+}
+
+.brand-gradient-text {
+  background:
+    linear-gradient(
+      135deg,
+      var(--brand-primary-dark),
+      var(--brand-primary)
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+/* ============================================================
+   HERO BACKGROUND
+   ============================================================ */
+
+.hero-background {
+  position: relative;
+
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(20, 184, 166, 0.12),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(245, 158, 11, 0.09),
+      transparent 30%
+    ),
+    var(--background);
+}
+
+/* ============================================================
+   DECORATIVE BACKGROUND
+   ============================================================ */
+
+.mesh-background {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.mesh-background::before,
+.mesh-background::after {
+  content: "";
+
+  position: absolute;
+
+  width: 24rem;
+  height: 24rem;
+
+  border-radius: 999px;
+
+  pointer-events: none;
+
+  filter: blur(80px);
+
+  opacity: 0.2;
+
+  z-index: -1;
+}
+
+.mesh-background::before {
+  top: -10rem;
+  left: -8rem;
+
+  background: var(--brand-primary);
+}
+
+.mesh-background::after {
+  right: -8rem;
+  bottom: -12rem;
+
+  background: var(--brand-accent);
+}
+
+/* ============================================================
+   FLOATING ANIMATIONS
+   ============================================================ */
+
 @keyframes floatY {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate3d(0, 0, 0);
   }
+
   50% {
     transform: translate3d(0, -8px, 0);
   }
 }
 
 @keyframes floatYReverse {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate3d(0, 0, 0);
   }
+
   50% {
     transform: translate3d(0, 8px, 0);
   }
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.35;
-    transform: scale3d(1, 1, 1);
-  }
-  50% {
-    opacity: 0.65;
-    transform: scale3d(1.04, 1.04, 1);
-  }
-}
-
-@keyframes rotateMesh {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
+@keyframes pulseSoft {
+  0%,
   100% {
-    transform: translate3d(0, 0, 0) rotate(360deg);
+    opacity: 0.7;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
   }
 }
 
-@keyframes bobbleGentle {
-  0%, 100% {
-    transform: translate3d(0, 0, 0);
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
   }
-  50% {
-    transform: translate3d(0, -4px, 0);
+
+  100% {
+    background-position: 1000px 0;
   }
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ============================================================
+   ANIMATION UTILITIES
+   ============================================================ */
 
 .animate-float-3d,
 .animate-float-y {
   animation: floatY 6s ease-in-out infinite;
+
   will-change: transform;
-  transform: translateZ(0);
 }
 
 .animate-float-3d-slow {
   animation: floatY 9s ease-in-out infinite;
+
   will-change: transform;
-  transform: translateZ(0);
 }
 
 .animate-float-3d-reverse,
 .animate-float-y-reverse {
   animation: floatYReverse 7s ease-in-out infinite;
+
   will-change: transform;
-  transform: translateZ(0);
 }
 
 .animate-bobble-3d,
 .animate-bobble-gentle {
-  animation: bobbleGentle 5s ease-in-out infinite;
-  will-change: transform;
-  transform: translateZ(0);
-}
+  animation: floatY 5s ease-in-out infinite;
 
-.animate-mesh-3d {
-  animation: rotateMesh 30s linear infinite;
   will-change: transform;
-  transform: translateZ(0);
 }
 
 .animate-glow-3d {
-  animation: pulseGlow 4s ease-in-out infinite;
+  animation: pulseSoft 4s ease-in-out infinite;
+
   will-change: transform, opacity;
-  transform: translateZ(0);
 }
 
-/* Clean, Sleek Card Hover Elevation */
-.card-3d-depth,
-.card-interactive {
-  will-change: transform, box-shadow;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
-  box-shadow: 
-    0 4px 20px -4px rgba(0, 0, 0, 0.05),
-    0 0 0 1px rgba(0, 0, 0, 0.03);
+.animate-fade-in {
+  animation: fadeIn 500ms var(--ease-out) both;
 }
 
-.card-3d-depth:hover,
-.card-interactive:hover {
-  transform: translate3d(0, -4px, 0);
-  box-shadow: 
-    0 20px 35px -10px rgba(0, 0, 0, 0.08),
-    0 10px 20px -5px rgba(16, 185, 129, 0.12);
+.animate-slide-up {
+  animation: slideUp 500ms var(--ease-out) both;
 }
 
-/* Dynamic Dark Mode overrides across Admin panel */
+.animate-scale-in {
+  animation: scaleIn 350ms var(--ease-out) both;
+}
+
+/* ============================================================
+   SKELETON LOADING
+   ============================================================ */
+
+.skeleton {
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--surface-muted) 25%,
+      var(--border-light) 50%,
+      var(--surface-muted) 75%
+    );
+
+  background-size: 1000px 100%;
+
+  animation: shimmer 2s linear infinite;
+
+  border-radius: var(--radius-md);
+}
+
+/* ============================================================
+   BUTTON INTERACTION
+   ============================================================ */
+
+button,
+[role="button"] {
+  transition:
+    transform 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+button:not(:disabled):active,
+[role="button"]:not([aria-disabled="true"]):active {
+  transform: scale(0.98);
+}
+
+/* ============================================================
+   IMAGE HANDLING
+   ============================================================ */
+
+img {
+  max-width: 100%;
+}
+
+img[data-cover="true"] {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+
+.container-app {
+  width: min(
+    calc(100% - 2rem),
+    var(--container-width)
+  );
+
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .container-app {
+    width: min(
+      calc(100% - 3rem),
+      var(--container-width)
+    );
+  }
+}
+
+/* ============================================================
+   SECTION SPACING
+   ============================================================ */
+
+.section {
+  padding-block: 5rem;
+}
+
+.section-sm {
+  padding-block: 3rem;
+}
+
+.section-lg {
+  padding-block: 7rem;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-block: 3.5rem;
+  }
+
+  .section-sm {
+    padding-block: 2.5rem;
+  }
+
+  .section-lg {
+    padding-block: 5rem;
+  }
+}
+
+/* ============================================================
+   STATUS BADGES
+   ============================================================ */
+
+.status-success {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.status-warning {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+
+.status-danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.status-info {
+  background: var(--info-soft);
+  color: var(--info);
+}
+
+/* ============================================================
+   DARK MODE — COMMON LEGACY TAILWIND COMPATIBILITY
+   ============================================================ */
+
 html.dark body {
-  background-color: #0b1310 !important;
-  color: #f3f4f6 !important;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 html.dark .bg-white {
-  background-color: #13201b !important;
+  background-color: var(--surface) !important;
 }
 
 html.dark .bg-white\/80 {
-  background-color: rgba(19, 32, 27, 0.85) !important;
+  background-color: color-mix(
+    in srgb,
+    var(--surface) 85%,
+    transparent
+  ) !important;
 }
 
 html.dark .bg-white\/90 {
-  background-color: rgba(19, 32, 27, 0.95) !important;
+  background-color: color-mix(
+    in srgb,
+    var(--surface) 95%,
+    transparent
+  ) !important;
 }
 
 html.dark .bg-gray-50,
@@ -162,71 +829,141 @@ html.dark .bg-gray-50\/40,
 html.dark .bg-gray-50\/50,
 html.dark .bg-gray-50\/60,
 html.dark .bg-gray-50\/80 {
-  background-color: #162620 !important;
+  background-color: var(--background-soft) !important;
 }
 
 html.dark .bg-gray-100,
 html.dark .bg-gray-100\/80 {
-  background-color: #1c3029 !important;
+  background-color: var(--surface-muted) !important;
 }
 
 html.dark .bg-gray-200 {
-  background-color: #274238 !important;
+  background-color: var(--border) !important;
 }
 
+html.dark .border-gray-50,
 html.dark .border-gray-100,
-html.dark .border-gray-200,
-html.dark .border-gray-50 {
-  border-color: #1f332b !important;
+html.dark .border-gray-200 {
+  border-color: var(--border) !important;
 }
 
 html.dark .text-gray-900,
 html.dark .text-gray-800 {
-  color: #f9fafb !important;
+  color: var(--foreground) !important;
 }
 
 html.dark .text-gray-700,
 html.dark .text-gray-600 {
-  color: #d1d5db !important;
+  color: var(--foreground-secondary) !important;
 }
 
 html.dark .text-gray-500,
 html.dark .text-gray-400 {
-  color: #9ca3af !important;
+  color: var(--foreground-muted) !important;
 }
 
 html.dark input,
 html.dark select,
 html.dark textarea {
-  background-color: #162620 !important;
-  color: #f9fafb !important;
-  border-color: #274238 !important;
+  background-color: var(--surface-muted) !important;
+
+  color: var(--foreground) !important;
+
+  border-color: var(--border) !important;
 }
 
 html.dark input::placeholder,
 html.dark textarea::placeholder {
-  color: #6b7280 !important;
+  color: var(--foreground-subtle) !important;
 }
 
-html.dark .shadow-sm,
-html.dark .shadow-md,
-html.dark .shadow-lg,
+/* ============================================================
+   DARK MODE — SHADOWS
+   ============================================================ */
+
+html.dark .shadow-sm {
+  box-shadow: var(--shadow-sm) !important;
+}
+
+html.dark .shadow-md {
+  box-shadow: var(--shadow-md) !important;
+}
+
+html.dark .shadow-lg {
+  box-shadow: var(--shadow-lg) !important;
+}
+
 html.dark .shadow-xl,
 html.dark .shadow-2xl {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.45), 0 8px 10px -6px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: var(--shadow-xl) !important;
 }
 
 html.dark .card-3d-depth,
-html.dark .card-interactive {
-  box-shadow: 
-    0 4px 20px -4px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+html.dark .card-interactive,
+html.dark .card-modern {
+  background: var(--surface);
+
+  border-color: var(--border);
+
+  box-shadow: var(--shadow-sm);
 }
 
 html.dark .card-3d-depth:hover,
-html.dark .card-interactive:hover {
-  box-shadow: 
-    0 20px 40px -10px rgba(0, 0, 0, 0.6),
-    0 0 25px rgba(16, 185, 129, 0.15),
-    0 0 0 1px rgba(16, 185, 129, 0.3);
+html.dark .card-interactive:hover,
+html.dark .card-modern:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--brand-primary) 35%,
+    var(--border)
+  );
+
+  box-shadow:
+    var(--shadow-lg),
+    0 0 30px
+      color-mix(
+        in srgb,
+        var(--brand-primary) 10%,
+        transparent
+      );
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   MOBILE POLISH
+   ============================================================ */
+
+@media (max-width: 640px) {
+  body {
+    font-size: 15px;
+  }
+
+  h1 {
+    letter-spacing: -0.03em;
+  }
+
+  .card-3d-depth:hover,
+  .card-interactive:hover,
+  .card-modern:hover {
+    transform: none;
+  }
 }

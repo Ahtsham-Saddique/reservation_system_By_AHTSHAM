@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useCart } from './CartProvider';
+import { useAuth } from './AuthProvider';
 import Link from 'next/link';
 
 interface CartSidebarProps {
@@ -11,6 +12,7 @@ interface CartSidebarProps {
 
 export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
   const { cart, removeFromCart, cartTotal } = useCart();
+  const { user } = useAuth();
 
   if (!isOpen) return null;
 
@@ -37,7 +39,16 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         </div>
 
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          {cart.length === 0 ? (
+          {!user ? (
+            <div className="h-full flex flex-col items-center justify-center text-center space-y-4 text-gray-500">
+              <div className="text-5xl mb-2 opacity-50">🔒</div>
+              <p className="text-lg font-bold">Please log in to view your cart</p>
+              <p className="text-sm">Sign in to manage your bookings and checkout.</p>
+              <Link href="/login" onClick={onClose} className="mt-4 px-6 py-2.5 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-500 transition-colors">
+                Sign In
+              </Link>
+            </div>
+          ) : cart.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center space-y-4 text-gray-500">
               <div className="text-5xl mb-2 opacity-50">🛒</div>
               <p className="text-lg font-bold">Your cart is empty</p>
