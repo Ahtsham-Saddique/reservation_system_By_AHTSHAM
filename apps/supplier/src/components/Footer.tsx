@@ -1,73 +1,224 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-emerald-900 mt-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8 items-center">
+    <footer className="mt-20 border-t border-border bg-slate-950 text-white">
+      <div className="mx-auto max-w-7xl px-5 py-14 sm:px-6 lg:px-8">
+        {/* =====================================================
+            MAIN FOOTER
+        ===================================================== */}
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Brand */}
-          <div className="xl:col-span-1 mb-8 xl:mb-0">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg shadow-emerald-900/20">
-                🍃
+          <div className="lg:col-span-5">
+            <Link
+              href="/"
+              className="group inline-flex items-center gap-3"
+              aria-label="EcoTravel home"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand text-xl text-white shadow-lg shadow-brand/20 transition-transform duration-200 group-hover:-translate-y-0.5">
+                <span aria-hidden="true">✦</span>
               </div>
-              <span className="text-2xl font-black text-white tracking-tighter">
-                Eco<span className="text-emerald-400">Travel.</span>
+
+              <span className="text-2xl font-bold tracking-tight text-white">
+                Eco
+                <span className="text-teal-300">Travel</span>
               </span>
             </Link>
-            <p className="text-emerald-100/80 text-sm leading-relaxed max-w-sm">
-              Making sustainable travel accessible, seamless, and beautiful for everyone.
+
+            <p className="mt-5 max-w-md text-sm leading-7 text-slate-400">
+              Discover better ways to travel. Find stays, journeys, and
+              experiences designed to make planning your next trip simple.
             </p>
-          </div>
 
-          {/* Links Grid */}
-          <div className="grid grid-cols-2 gap-8 xl:col-span-2">
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Explore</h3>
-                <ul className="space-y-3">
-                  <li><Link href="/" className="text-emerald-100/70 hover:text-white text-sm transition-colors">Eco Hotels</Link></li>
-                  <li><Link href="/" className="text-emerald-100/70 hover:text-white text-sm transition-colors">EV Buses</Link></li>
-                  <li><Link href="/" className="text-emerald-100/70 hover:text-white text-sm transition-colors">Nature Tours</Link></li>
-                  <li><Link href="/" className="text-emerald-100/70 hover:text-white text-sm transition-colors">Green Flights</Link></li>
-                </ul>
+            {/* Brand highlights */}
+            <div className="mt-7 flex flex-wrap gap-3">
+              <div className="rounded-full border border-white/10 bg-white/5 px-3.5 py-2 text-xs font-medium text-slate-300">
+                Trusted travel platform
               </div>
-              <div className="mt-8 md:mt-0">
-                <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Company</h3>
-                <ul className="space-y-3">
-                  <li><Link href="#" className="text-emerald-100/70 hover:text-white text-sm transition-colors">About Us</Link></li>
-                  <li><Link href="#" className="text-emerald-100/70 hover:text-white text-sm transition-colors">Mission</Link></li>
-                  <li><Link href="#" className="text-emerald-100/70 hover:text-white text-sm transition-colors">Careers</Link></li>
-                </ul>
+
+              <div className="rounded-full border border-white/10 bg-white/5 px-3.5 py-2 text-xs font-medium text-slate-300">
+                Secure reservations
               </div>
             </div>
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Support</h3>
-                <ul className="space-y-3">
-                  <li><Link href="#" className="text-emerald-100/70 hover:text-white text-sm transition-colors">Help Center</Link></li>
-                  <li><Link href="#" className="text-emerald-100/70 hover:text-white text-sm transition-colors">Contact Us</Link></li>
-                </ul>
-              </div>
-              <div className="mt-8 md:mt-0">
-                <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Legal</h3>
-                <ul className="space-y-3">
-                  <li><Link href="#" className="text-emerald-100/70 hover:text-white text-sm transition-colors">Terms of Service</Link></li>
-                  <li><Link href="#" className="text-emerald-100/70 hover:text-white text-sm transition-colors">Privacy Policy</Link></li>
-                </ul>
-              </div>
+          </div>
+
+          {/* =================================================
+              LINKS
+          ================================================= */}
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4 lg:col-span-7">
+            {/* Explore */}
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-white">
+                Explore
+              </h3>
+
+              <ul className="mt-5 space-y-3.5">
+                <li>
+                  <Link
+                    href="/"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    Hotels
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    Flights
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    Buses
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    Tours
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-white">
+                Company
+              </h3>
+
+              <ul className="mt-5 space-y-3.5">
+                <li>
+                  <Link
+                    href="#"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    About
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="#"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    Our Mission
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="#"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    Careers
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Support */}
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-white">
+                Support
+              </h3>
+
+              <ul className="mt-5 space-y-3.5">
+                <li>
+                  <Link
+                    href="#"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    Help Center
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="#"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="#"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    FAQs
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Legal */}
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-white">
+                Legal
+              </h3>
+
+              <ul className="mt-5 space-y-3.5">
+                <li>
+                  <Link
+                    href="#"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    Terms
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="#"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    Privacy
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="#"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                  >
+                    Cookies
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
 
-        {/* Bottom / Copyright */}
-        <div className="mt-10 border-t border-emerald-800/60 pt-6 flex justify-center items-center">
-          <p className="text-emerald-200/60 text-xs font-medium">
-            &copy; 2026 EcoTravel Inc. All rights reserved.
+        {/* =====================================================
+            DIVIDER
+        ===================================================== */}
+        <div className="my-10 h-px bg-white/10" />
+
+        {/* =====================================================
+            BOTTOM BAR
+        ===================================================== */}
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs font-medium text-slate-500">
+            © 2026 EcoTravel Inc. All rights reserved.
           </p>
+
+          <div className="flex items-center gap-2 text-xs text-slate-500">
+            <span className="flex h-2 w-2 rounded-full bg-teal-400" />
+            <span>Travel better. Explore more.</span>
+          </div>
         </div>
-        
       </div>
     </footer>
   );

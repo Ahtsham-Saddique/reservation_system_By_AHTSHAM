@@ -7,11 +7,16 @@ import { AuthProvider } from "@/components/AuthProvider";
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "EcoTravel | Supplier Portal",
-  description: "Book your eco-friendly travel options.",
+  title: {
+    default: "EcoTravel | Supplier Portal",
+    template: "%s | EcoTravel",
+  },
+  description:
+    "Manage your travel listings, reservations, bookings, and business operations with EcoTravel.",
 };
 
 export default function RootLayout({
@@ -20,16 +25,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} font-sans antialiased min-h-screen bg-[#F7FBF9] text-gray-800 flex flex-col`}
+        className={`${outfit.variable} font-sans antialiased min-h-screen bg-background text-foreground`}
       >
         <AuthProvider>
-          <Navbar />
-          <main className="flex-grow">{children}</main>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+
+            <main className="flex-1 w-full">
+              {children}
+            </main>
+          </div>
         </AuthProvider>
       </body>
     </html>
   );
 }
-

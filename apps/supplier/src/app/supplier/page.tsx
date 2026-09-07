@@ -473,42 +473,20 @@ export default function SupplierDashboard() {
         </div>
       )}
 
-      {/* Hero Welcome Header */}
+      {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-950 p-8 sm:p-10 text-white shadow-xl shadow-emerald-950/10">
-          <div className="absolute top-0 right-0 -mt-8 -mr-8 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-700/60 border border-emerald-500/30 text-emerald-200 text-xs font-bold uppercase tracking-wider mb-3">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                Supplier Workspace • Live Sync & Analytics
-              </div>
-              <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-2">
-                Welcome back, {user?.name || "Partner"}
-              </h1>
-              <p className="text-emerald-100/80 font-medium text-sm sm:text-base max-w-xl">
-                Oversee incoming reservations, manage eco listings, export spreadsheets, and analyze revenue trends.
-              </p>
-            </div>
-            
-            <div className="flex flex-wrap items-center gap-3">
-              <button
-                onClick={() => setShowCreateModal(true)}
-                className="px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-black rounded-2xl shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] active:scale-95 flex items-center gap-2 text-sm"
-              >
-                <span>+</span> Add New Listing
-              </button>
-
-              <button
-                onClick={() => fetchSupplierData(true)}
-                disabled={isRefreshing}
-                className="px-4 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl border border-white/10 transition-all text-sm flex items-center gap-2 active:scale-95 disabled:opacity-50"
-                title="Refresh Metrics"
-              >
-                <span className={isRefreshing ? "animate-spin" : ""}>🔄</span>
-                <span>{isRefreshing ? "Refreshing..." : "Refresh Data"}</span>
-              </button>
-            </div>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div>
+            <h1 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">Supplier Workspace</h1>
+            <p className="text-gray-500 font-medium mt-1">Oversee incoming reservations, manage eco listings, export spreadsheets, and analyze revenue trends.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <button onClick={() => setShowCreateModal(true)} className="px-5 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-2xl shadow-lg shadow-emerald-600/20 transition-all hover:scale-[1.02] text-sm flex items-center gap-2">
+              <span>+</span> Add New Listing
+            </button>
+            <button onClick={() => fetchSupplierData(true)} disabled={isRefreshing} className="px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-2xl transition-all text-sm flex items-center gap-2 disabled:opacity-50">
+              <span className={isRefreshing ? "animate-spin" : ""}>🔄</span> {isRefreshing ? "Refreshing..." : "Refresh"}
+            </button>
           </div>
         </div>
       </div>
@@ -519,64 +497,31 @@ export default function SupplierDashboard() {
           {/* Navigation Sidebar */}
           <div className="w-full lg:w-64 flex-shrink-0">
             <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100 sticky top-28 space-y-2">
-              <p className="text-xs font-black text-gray-400 uppercase tracking-wider px-3 mb-2">Workspace Navigation</p>
+              <p className="text-xs font-black text-gray-400 uppercase tracking-wider px-3 mb-2">Workspace</p>
               
-              <button 
-                onClick={() => setActiveTab('overview')}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all ${
-                  activeTab === 'overview' 
-                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20' 
-                    : 'text-gray-600 hover:bg-gray-50'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <span>📊</span> Overview & Trends
-                </div>
+              <button onClick={() => setActiveTab('overview')} className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all ${activeTab === 'overview' ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20' : 'text-gray-600 hover:bg-gray-50'}`}>
+                <div className="flex items-center gap-3"><span>📊</span> Overview</div>
               </button>
 
-              <button 
-                onClick={() => setActiveTab('inventory')}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all ${
-                  activeTab === 'inventory' 
-                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20' 
-                    : 'text-gray-600 hover:bg-gray-50'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <span>📦</span> My Listings
-                </div>
+              <button onClick={() => setActiveTab('inventory')} className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all ${activeTab === 'inventory' ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20' : 'text-gray-600 hover:bg-gray-50'}`}>
+                <div className="flex items-center gap-3"><span>📦</span> Listings</div>
                 <span className={`text-xs px-2 py-0.5 rounded-full font-black ${activeTab === 'inventory' ? 'bg-emerald-700 text-white' : 'bg-gray-100 text-gray-600'}`}>
                   {stats?.totalInventoryCount || 0}
                 </span>
               </button>
 
-              <button 
-                onClick={() => setActiveTab('bookings')}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all ${
-                  activeTab === 'bookings' 
-                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20' 
-                    : 'text-gray-600 hover:bg-gray-50'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <span>🎫</span> Reservations
-                </div>
+              <button onClick={() => setActiveTab('bookings')} className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl font-bold text-sm transition-all ${activeTab === 'bookings' ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20' : 'text-gray-600 hover:bg-gray-50'}`}>
+                <div className="flex items-center gap-3"><span>🎫</span> Reservations</div>
                 <span className={`text-xs px-2 py-0.5 rounded-full font-black ${activeTab === 'bookings' ? 'bg-emerald-700 text-white' : 'bg-gray-100 text-gray-600'}`}>
                   {bookings.length}
                 </span>
               </button>
 
               <div className="pt-4 border-t border-gray-100 mt-4 space-y-2">
-                <button
-                  onClick={exportBookingsCSV}
-                  className="w-full py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition-colors"
-                >
+                <button onClick={exportBookingsCSV} className="w-full py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition-colors">
                   <span>📥</span> Export Bookings CSV
                 </button>
-                <button
-                  onClick={exportListingsCSV}
-                  className="w-full py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition-colors"
-                >
+                <button onClick={exportListingsCSV} className="w-full py-2.5 px-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-2 transition-colors">
                   <span>📥</span> Export Inventory CSV
                 </button>
               </div>
@@ -596,53 +541,22 @@ export default function SupplierDashboard() {
               <div className="space-y-8">
                 {/* Metric Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                  <div className="h-full bg-white dark:bg-[#13201b] rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-[#1f332b] card-interactive relative overflow-hidden group flex flex-col justify-between">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-50 dark:bg-emerald-950/40 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 rounded-2xl flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform shadow-inner">
-                        💰
+                  {[
+                    { icon: "💰", label: "Gross Revenue", value: `$${stats?.totalRevenue ? stats.totalRevenue.toFixed(2) : "0.00"}`, note: "Real-time payouts", bg: "bg-emerald-100 text-emerald-700" },
+                    { icon: "🎫", label: "Customer Bookings", value: stats?.totalBookings || 0, note: "Active demand", bg: "bg-blue-100 text-blue-700" },
+                    { icon: "📦", label: "Active Listings", value: stats?.totalInventoryCount || 0, note: "Ready to reserve", bg: "bg-purple-100 text-purple-700" },
+                  ].map((s, i) => (
+                    <div key={i} className="h-full bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex flex-col justify-between">
+                      <div>
+                        <div className={`w-12 h-12 ${s.bg} rounded-2xl flex items-center justify-center text-xl font-bold mb-4`}>
+                          {s.icon}
+                        </div>
+                        <p className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-1">{s.label}</p>
+                        <h3 className="text-3xl font-black text-gray-900 mb-1">{s.value}</h3>
                       </div>
-                      <p className="text-gray-400 dark:text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">Gross Revenue</p>
-                      <h3 className="text-3xl font-black text-gray-900 dark:text-white mb-2">
-                        ${stats?.totalRevenue ? stats.totalRevenue.toFixed(2) : "0.00"}
-                      </h3>
-                      <div className="flex items-center gap-2 text-xs font-bold text-emerald-600 dark:text-emerald-400">
-                        <span>↑ 100% earned</span> • <span className="text-gray-400 dark:text-gray-500 font-medium">Real-time payouts</span>
-                      </div>
+                      <p className="text-[11px] text-gray-400 font-medium">{s.note}</p>
                     </div>
-                  </div>
-
-                  <div className="h-full bg-white dark:bg-[#13201b] rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-[#1f332b] card-interactive relative overflow-hidden group flex flex-col justify-between">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 dark:bg-blue-950/40 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 bg-blue-100 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300 rounded-2xl flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform shadow-inner">
-                        🎫
-                      </div>
-                      <p className="text-gray-400 dark:text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">Customer Bookings</p>
-                      <h3 className="text-3xl font-black text-gray-900 dark:text-white mb-2">
-                        {stats?.totalBookings || 0}
-                      </h3>
-                      <div className="flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400">
-                        <span>⚡ Active demand</span> • <span className="text-gray-400 dark:text-gray-500 font-medium">Auto chime alerts</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="h-full bg-white dark:bg-[#13201b] rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-[#1f332b] card-interactive relative overflow-hidden group flex flex-col justify-between sm:col-span-2 lg:col-span-1">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-purple-50 dark:bg-purple-950/40 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 bg-purple-100 dark:bg-purple-950/70 text-purple-700 dark:text-purple-300 rounded-2xl flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform shadow-inner">
-                        📦
-                      </div>
-                      <p className="text-gray-400 dark:text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">Active Listings</p>
-                      <h3 className="text-3xl font-black text-gray-900 dark:text-white mb-2">
-                        {stats?.totalInventoryCount || 0}
-                      </h3>
-                      <div className="flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400">
-                        <span>🌱 Published & Live</span> • <span className="text-gray-400 dark:text-gray-500 font-medium">Ready to reserve</span>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
 
                 {/* Dynamic Visual Revenue / Demand Graph */}
